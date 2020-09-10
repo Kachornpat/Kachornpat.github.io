@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        
+        What is the answer of <span id="x1"> </span> + <span id="x2"></span> ?<br/>
+        <input id="answer" type="text" >
+        <button onclick="btn_click()">Answer</button>
+        <p1><b id="checking"></b></p1>
+        <script defer>
+            var value1 = Math.round(Math.random() * 100);
+            var value2 = Math.round(Math.random() * 100);
+            var result = value1 + value2;
+            document.getElementById("x1").innerText = value1;
+            document.getElementById("x2").innerText = value2;
+
+            function btn_click(){
+                var get_answer = document.getElementById("answer").value;
+                if (get_answer == result){
+                    document.getElementById("checking").innerText = "Good job!";
+                    document.getElementById("checking").style.color = "green";
+                    }else{
+                    document.getElementById("checking").innerText = "Try again!";
+                    document.getElementById("checking").style.color = "red";
+                }
+            }
+        </script>
+    </body>
+</html>
