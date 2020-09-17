@@ -1,0 +1,36 @@
+<html>
+<head>
+
+  <!-- To import jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script defer>
+    var value1 = Math.round(Math.random() * 100);
+    var value2 = Math.round(Math.random() * 100);
+    var result = value1 + value2;
+    function btn_click(){
+                var get_answer = document.getElementById("answer").value;
+                if (get_answer == result){
+                    $("#checking").text("Good job!");
+                    $("#checking").css("color", "green");
+                }else{
+                    $("#checking").text("Try again!");
+                    $("#checking").css("color", "red");
+                }
+            }
+    
+</script>
+
+</head>
+
+<body>
+    what is the answer of <span id="x1"></span> + 
+    <span id="x2"></span>
+    <script>
+        $("#x1").text(value1);
+        $("#x2").text(value2);
+    </script><br/>
+    <input id="answer" type="text" >
+    <button onclick="btn_click()">Answer</button>
+    <p1><b id="checking"></b></p1>
+</body>
+</html>
