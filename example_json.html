@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Maeluenie T. 61011277</title>
+  <style>
+  .red{
+    background-color: lightblue;
+  }</style>
+  <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" 
+  ></script>
+    
+</head>
+<body>
+  <div class="red">
+    <strong> Click the Search Button</strong>
+<input id="search" type="text" >
+<button onclick="search_click()">Search</button>
+</div>
+<hr/>
+<ul id="list"></ul><br>
+    <script>
+
+
+function search_click() {
+  var get_search = document.getElementById("search").value;
+  $.ajax({
+    url: "https://www.googleapis.com/books/v1/volumes?q=title:" + get_search,
+    type: "GET",
+    cache: false,
+    success: function(json) {
+      const data = json.items;
+      htmlStr = '<p>' + data.length + ' results found</p>'
+      $('#list').append(htmlStr);
+      for(var i=0; i< data.length; i++){
+        console.log(i, data[i].volumeInfo.title);
+        var htmlStr = '<table><tr><td width="400" bgcolor="lightblue"><h4>' + data[i].volumeInfo.title + 
+        '</h4><p>Author: ' +  data[i].volumeInfo.authors + '</p>' +
+        '<p>ISBN: ' +  data[i].volumeInfo.industryIdentifiers[0].identifier + '</p>' +
+        '<p>Price: '+ data[i].saleInfo.listPrice.amount + ' '+  data[i].saleInfo.listPrice.currencyCode+
+        '</p></td><td><img src="' + data[i].volumeInfo.imageLinks.smallThumbnail +'"><td></tr></table>'
+        $('#list').append(htmlStr);
+      }
+      }
+      
+    
+  });
+}
+
+</script>
+
+</body>
+</html>
